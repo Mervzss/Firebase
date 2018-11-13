@@ -30,3 +30,16 @@ export const addLocation = (loc) =>{
         location: loc
     }
 }
+
+export const uploadToFB = (account) =>{
+    return dispatch =>{
+        fetch("https://snrfirebase.firebaseio.com/accountsInfo.json",{
+            method:'POST',
+            body: JSON.stringify(account)
+        }).catch(err => console.log(err))
+        .then(receive => receive.json())
+        .then(jsValue => console.log(jsValue))
+    }
+
+}
+

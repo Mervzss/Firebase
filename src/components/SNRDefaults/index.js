@@ -7,7 +7,7 @@ export {DefaultBG} from './BackgroundTheme/DefaultBackground'
 
 //Custom Text imports
 export {HeadText} from './Text/HeadText'
-
+export {MediumText} from './Text/MediumText'
 //Custom TextInputs
 export {InitialTextInput} from './TextInput/InitialTextInput'
 

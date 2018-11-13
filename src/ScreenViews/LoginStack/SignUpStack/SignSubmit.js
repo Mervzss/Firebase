@@ -1,54 +1,57 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, ScrollView, Image } from 'react-native'
-import { DefaultBG, HeadText, HomeButton } from '../../../components/SNRDefaults'
+import { DefaultBG, HeadText, HomeButton, MediumText } from '../../../components/SNRDefaults'
 import MapView, { Marker } from 'react-native-maps'
 import { connect } from 'react-redux'
+import {uploadToFB} from '../../../ReduxStore/Actions/SignIn'
 class SignSubmit extends Component {
     onButtonNext = () => {
-
+        this.props.sendToFB(this.props.accountInfo)
+        // this.props.navigation.navigate('Login')
     }
     render() {
         return (
 
             <DefaultBG>
                 <ScrollView contentContainerStyle={{ alignItems: "center", paddingVertical: 50 }} showsVerticalScrollIndicator={false}>
+                    <View style={{ alignItems: "center", flex:1, justifyContent:'center', width:'100%'}}>
                     {/* OutPuts User Inputs */}
                     <HeadText> Sign Up: Submit</HeadText>
 
                     {/* TEXT VIEW */}
                     <View style={{flexDirection:'column'}}>
                                    
-                        <Text>Your userName:</Text>
-                        <Text> {this.props.firstName}.{this.props.lastName}</Text>
-                        <Text>Email:</Text>
-                        <Text>{this.props.email}</Text>
-                        <Text>Password:</Text>
-                        <Text>{this.props.password}</Text>
+                        <MediumText>Your userName:</MediumText>
+                        <MediumText> {this.props.accountInfo.firstName}.{this.props.accountInfo.lastName}</MediumText>
+                        <MediumText>Email:</MediumText>
+                        <MediumText>{this.props.accountInfo.email}</MediumText>
+                        <MediumText>Password:</MediumText>
+                        <MediumText>{this.props.accountInfo.password}</MediumText>
                         
                     
                     </View>
-
+                    <MediumText>Your Picture</MediumText>
                     {/* IMAGE VIEW */}
-                    <View style={{ width: '100%', height: 200 }}>
-                        <Image resizeMode='stretch' style={styles.insertedImage} source={this.props.picture} />
+                    <View style={{ width: '100%', height: 200,alignItems: "center" }}>
+                        <Image resizeMode='stretch' style={styles.insertedImage} source={this.props.accountInfo.picture} />
                     </View>
-                    
+                    <MediumText>Your Location</MediumText>
                     {/* MAP VIEW */}
                     <View style={{ width: '100%', height: 200 }}>
                         <MapView
-                            style={{ width: '90%', height: '100%' }}
-                            initialRegion={this.props.location}>
-                            <Marker coordinate={this.props.location} pinColor="#f024b0" />
+                            style={{ width: '100%', height: '100%' }}
+                            initialRegion={this.props.accountInfo.location}>
+                            {/* <Marker coordinate={this.props.location} pinColor="#f024b0" /> */}
                         </MapView>
                     </View>
 
 
-                    <View style={{ width: '100%', alignItems: 'center', }}>
-                        <HomeButton textTitle={'Submit'} iconName='md-done-all' inverted={true} onPress={() => this.props.navigation.navigate('Login')} />
+                    <View style={{ width: '100%' }}>
+                        <HomeButton textTitle={'Submit'} iconName='md-done-all' inverted={true} onPress={this.onButtonNext} />
                     </View>
 
                     <HeadText> Sign Up: Submit</HeadText>
-
+                    </View>
                 </ScrollView>
             </DefaultBG>
 
@@ -57,20 +60,21 @@ class SignSubmit extends Component {
 }
 const mapStateToProps = state => {
     return {
-        firstName: state.SignIn.firstName,
-        lastName: state.SignIn.lastName,
-        email: state.SignIn.email,
-        password: state.SignIn.password,
-        picture: state.SignIn.picture,
-        location: state.SignIn.location
+        accountInfo: state.SignIn.accountInfo
     }
+}
+
+const mapDispatchToProps = dispatch =>{
+    return{
+        sendToFB: acc => dispatch(uploadToFB(acc))
+    }  
 }
 
 const styles = StyleSheet.create({
     insertedImage: {
-        width: '90%',
+        width: '100%',
         height: 200,
     }
 })
 
-export default connect(mapStateToProps)(SignSubmit);
+export default connect(mapStateToProps, mapDispatchToProps)(SignSubmit);

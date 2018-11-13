@@ -10,7 +10,7 @@ export const MediumText = props => {
 const styles = StyleSheet.create({
     textStyle:{
         color: '#F2FBEF',
-        fontSize: 30,
+        fontSize: 20,
         fontWeight: 'bold',
         alignSelf:'center',
         paddingBottom:'5%'
