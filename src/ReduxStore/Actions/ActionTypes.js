@@ -11,3 +11,7 @@ export const LOAD_FINISH = "LOAD_FINISH"
 // Authenticate
 export const FETCH_SUCCESS = "FETCH_SUCCESS"
 export const FETCH_FAIL = "FETCH_FAIL"
+
+//ReadAccount
+
+export const ACCOUNT_READ = "ACCOUNT_READ"

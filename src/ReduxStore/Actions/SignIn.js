@@ -35,9 +35,7 @@ export const addLocation = (loc) => {
 }
 
 export const uploadToFB = (account) => {
-    console.log("CHECK picturre.base64: ", account.picture)
     return dispatch => {
-        console.log("stsart load ")
          dispatch(startLoad())
         fetch("https://us-central1-snrfirebase.cloudfunctions.net/uploadPicture", {
             method: 'POST',
@@ -64,7 +62,7 @@ export const uploadToFB = (account) => {
                     method: 'POST',
                     body: JSON.stringify(finalAccount)
                 }).catch(err => {
-                    // dispatch(finishLoad())
+                    dispatch(finishLoad())
                     dispatch(fetchFail())
                     return console.log(err)
                 })
@@ -72,7 +70,7 @@ export const uploadToFB = (account) => {
                 .then(jsValue => 
                     {
                         dispatch(fetchSuccess())
-                        // dispatch(finishLoad())
+                        dispatch(finishLoad())
                        return console.log(jsValue)
                     })
                     

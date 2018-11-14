@@ -6,14 +6,15 @@ import { connect } from 'react-redux'
 import { uploadToFB } from '../../../ReduxStore/Actions/SignIn'
 
 class SignSubmit extends Component {
+
     onButtonNext = () => {
         this.props.sendToFB(this.props.accountInfo)
-        // this.props.navigation.navigate('Login')
     }
 
-    componentDidUpdate(){
-        this.props.loading === false ? this.props.navigation.navigate('Login') : null
-        console.log("PICTURE UPDATE",this.props.accountInfo.picture)
+    componentDidUpdate() {
+        console.log("Submit Update", this.props.fetch)
+        this.props.fetch === true ? this.props.navigation.navigate('Login') : this.props.fetch === false
+            ? alert("Network Connection Error Please Submit Again") : null
     }
     render() {
         return (
@@ -50,22 +51,19 @@ class SignSubmit extends Component {
                             </MapView>
                         </View>
 
-                       
-                    <View style={{ width: '100%', paddingTop:20 }}>
-                    {!this.props.loading === true ? 
-                    ( 
-                         
-                             <HomeButton textTitle={'Submit'} iconName='md-done-all' inverted={true} onPress={this.onButtonNext} />
-                        
-                    )
-                    :
-                    (
-                        <ActivityIndicator size={40} color='white'/>
-                    )}
-                    </View>
 
+                        <View style={{ width: '100%', paddingTop: 20 }}>
+                            {!this.props.loading === true ?
+                                (
+                                    <HomeButton textTitle={'Submit'} iconName='md-done-all' inverted={true} onPress={this.onButtonNext} />
+                                )
+                                :
+                                (
+                                    <ActivityIndicator size={40} color='white' />
+                                )}
+                        </View>
 
-                        <HeadText> Sign Up: Submit</HeadText>
+                        <HeadText> Happy Day !</HeadText>
                     </View>
                 </ScrollView>
             </DefaultBG>

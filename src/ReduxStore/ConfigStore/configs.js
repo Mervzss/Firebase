@@ -15,7 +15,7 @@ const ReducerCombination = combineReducers({
 let composeEnchancers = compose;
 
 if(__DEV__){
-    composeEnchancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE || compose;
+    composeEnchancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 }
 
 export default configs = () =>{

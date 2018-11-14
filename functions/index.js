@@ -30,8 +30,6 @@ exports.uploadPicture = functions.https.onRequest((request, response) => {
         // Write the file into temporary path
         fs.writeFileSync("/tmp/uploaded-image.jpg", body.image, "base64", err => {
             // Console Error
-            console.log(err)
-            console.log("error sa write file")
             return response.status(500).json({ error: err })
         })
     })
@@ -53,7 +51,6 @@ exports.uploadPicture = functions.https.onRequest((request, response) => {
     },
         (err, file)=>{
             if(!err){
-                console.log("pumasok sa bucket imageurl")
                 response.status(201).json({
                     Imageurl:
                         "https://firebasestorage.googleapis.com/v0/b/"+
@@ -62,8 +59,6 @@ exports.uploadPicture = functions.https.onRequest((request, response) => {
                 })
             }
             else{
-                console.log("error sa else")
-                console.log(err)
                 response.status(500).json({error:err})
             }
         }

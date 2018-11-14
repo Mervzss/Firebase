@@ -5,7 +5,6 @@ const initialState ={
 }
 
 export default reducer = (state = initialState, action) =>{
-    console.log("PUMASOK")
     switch(action.type){
      
         case FETCH_SUCCESS:
