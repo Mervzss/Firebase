@@ -3,9 +3,13 @@ import thunk from 'redux-thunk'
 // import React from 'react-native'
 
 import SignInReducer from '../Reducers/SignInReducer'
+import LoadingReducer from '../Reducers/LoadingReducer'
+import AuthenticateReducer from '../Reducers/AuthenticateReducer'
 
 const ReducerCombination = combineReducers({
-    SignIn: SignInReducer
+    SignIn: SignInReducer,
+    Loading: LoadingReducer,
+    Authenticate: AuthenticateReducer
 })
 
 let composeEnchancers = compose;

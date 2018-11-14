@@ -25,7 +25,6 @@ export default reducer = (state = initialState, action) => {
                 email: action.email,
                 password: action.password
                 }
-                
             }
         case VERIFY_PASS:
             console.log(action.password)

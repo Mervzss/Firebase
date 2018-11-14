@@ -21,7 +21,7 @@ export class ImageViewer extends React.Component {
                 } else {
                     console.log(response)
                     this.setState({
-                        getImage: { uri: response.uri}
+                        getImage: { uri: response.uri , base64: response.data}
                     })
                     // const source = { uri: response.uri };
                 }

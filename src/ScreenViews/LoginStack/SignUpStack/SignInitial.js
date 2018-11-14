@@ -54,7 +54,7 @@ class SignInitial extends Component{
             this.state.email.value,
             this.state.password.value
         )
-        // this.props.navigation.navigate('Verify')
+        this.props.navigation.navigate('Verify')
     }
     render(){
         return(
